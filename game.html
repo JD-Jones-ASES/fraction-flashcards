@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fraction Sakura - Practice Game</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="day-mode">
+    <div class="floating-petals"></div>
+    
+    <div class="game-container">
+        <div class="game-header">
+            <h1 class="title">分数桜<br><span class="subtitle">Fraction Practice</span></h1>
+            
+            <div class="game-stats">
+                <div class="stat-item">
+                    <span class="stat-label">Time</span>
+                    <span class="stat-value" id="timer">00:00</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">Streak</span>
+                    <span class="stat-value" id="streak">0</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">Accuracy</span>
+                    <span class="stat-value" id="accuracy">100%</span>
+                </div>
+            </div>
+            
+            <div style="display: flex; gap: 1rem; align-items: center;">
+                <div class="theme-toggle">
+                    <button id="theme-btn" class="theme-button">
+                        <span class="sun-icon">☀️</span>
+                        <span class="moon-icon">🌙</span>
+                    </button>
+                </div>
+                <a href="index.html" class="return-button">
+                    🏮 Return to Menu
+                </a>
+            </div>
+        </div>
+
+        <div class="fraction-problem" id="problem-container">
+            <div class="fraction-equation" id="fraction-equation">
+                <!-- Fraction problem will be dynamically generated here -->
+            </div>
+            
+            <div class="input-section">
+                <div class="answer-input" id="answer-section">
+                    <!-- Input fields will be dynamically generated here -->
+                </div>
+                
+                <button class="answer-button" id="submit-btn">
+                    Submit Answer / 答え
+                </button>
+            </div>
+        </div>
+
+        <div class="feedback-message" id="feedback" style="text-align: center; margin: 1rem 0; font-size: 1.1rem; font-weight: bold; min-height: 1.5rem;"></div>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <p class="ai-disclaimer">Generated with AI assistance / AIによる生成</p>
+            <div class="footer-links">
+                <a href="#" class="footer-link github-link">
+                    <span class="link-icon">🏮</span>
+                    <span>Repository</span>
+                </a>
+                <a href="#" class="footer-link support-link">
+                    <span class="link-icon">🎋</span>
+                    <span>Support</span>
+                </a>
+            </div>
+            <p class="copyright">© 2025 Fraction Sakura / 分数桜</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fraction Sakura - Japanese Spring Math Adventure</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="day-mode">
+    <div class="floating-petals"></div>
+    
+    <header class="header">
+        <h1 class="title">分数桜<br><span class="subtitle">Fraction Sakura</span></h1>
+        <div class="theme-toggle">
+            <button id="theme-btn" class="theme-button">
+                <span class="sun-icon">☀️</span>
+                <span class="moon-icon">🌙</span>
+            </button>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <div class="game-setup">
+            <section class="option-panel">
+                <h2>Fraction Operations / 演算</h2>
+                <div class="operation-grid">
+                    <label class="operation-card">
+                        <input type="checkbox" name="operations" value="addition" checked>
+                        <div class="card-content">
+                            <span class="operation-symbol">+</span>
+                            <span class="operation-name">Addition</span>
+                        </div>
+                    </label>
+                    <label class="operation-card">
+                        <input type="checkbox" name="operations" value="subtraction">
+                        <div class="card-content">
+                            <span class="operation-symbol">−</span>
+                            <span class="operation-name">Subtraction</span>
+                        </div>
+                    </label>
+                    <label class="operation-card">
+                        <input type="checkbox" name="operations" value="multiplication">
+                        <div class="card-content">
+                            <span class="operation-symbol">×</span>
+                            <span class="operation-name">Multiplication</span>
+                        </div>
+                    </label>
+                    <label class="operation-card">
+                        <input type="checkbox" name="operations" value="division">
+                        <div class="card-content">
+                            <span class="operation-symbol">÷</span>
+                            <span class="operation-name">Division</span>
+                        </div>
+                    </label>
+                </div>
+            </section>
+
+            <section class="option-panel">
+                <h2>Denominator Range / 分母の範囲</h2>
+                <div class="range-options">
+                    <label class="range-card">
+                        <input type="radio" name="denominator-range" value="1-5" checked>
+                        <div class="card-content">
+                            <span class="range-value">1-5</span>
+                            <span class="range-desc">Beginner</span>
+                        </div>
+                    </label>
+                    <label class="range-card">
+                        <input type="radio" name="denominator-range" value="1-10">
+                        <div class="card-content">
+                            <span class="range-value">1-10</span>
+                            <span class="range-desc">Intermediate</span>
+                        </div>
+                    </label>
+                    <label class="range-card">
+                        <input type="radio" name="denominator-range" value="1-12">
+                        <div class="card-content">
+                            <span class="range-value">1-12</span>
+                            <span class="range-desc">Advanced</span>
+                        </div>
+                    </label>
+                    <label class="range-card">
+                        <input type="radio" name="denominator-range" value="1-15">
+                        <div class="card-content">
+                            <span class="range-value">1-15</span>
+                            <span class="range-desc">Expert</span>
+                        </div>
+                    </label>
+                </div>
+            </section>
+
+            <section class="option-panel">
+                <h2>Question Type / 問題の種類</h2>
+                <div class="question-options">
+                    <label class="question-card">
+                        <input type="radio" name="question-type" value="missing-result" checked>
+                        <div class="card-content">
+                            <span class="question-symbol">?</span>
+                            <span class="question-name">Missing Result</span>
+                            <span class="question-desc">Find the answer</span>
+                        </div>
+                    </label>
+                    <label class="question-card">
+                        <input type="radio" name="question-type" value="missing-operand">
+                        <div class="card-content">
+                            <span class="question-symbol">□</span>
+                            <span class="question-name">Missing Operand</span>
+                            <span class="question-desc">Find the fraction</span>
+                        </div>
+                    </label>
+                    <label class="question-card">
+                        <input type="radio" name="question-type" value="both">
+                        <div class="card-content">
+                            <span class="question-symbol">⚡</span>
+                            <span class="question-name">Mixed Challenge</span>
+                            <span class="question-desc">Random mix</span>
+                        </div>
+                    </label>
+                </div>
+            </section>
+
+            <div class="preview-panel">
+                <h3>Game Preview / ゲームプレビュー</h3>
+                <div class="preview-content">
+                    <div class="preview-operations">
+                        <span class="preview-label">Operations:</span>
+                        <span id="preview-ops">Addition</span>
+                    </div>
+                    <div class="preview-range">
+                        <span class="preview-label">Denominators:</span>
+                        <span id="preview-range">1-5 (Beginner)</span>
+                    </div>
+                    <div class="preview-type">
+                        <span class="preview-label">Question Type:</span>
+                        <span id="preview-type">Missing Result</span>
+                    </div>
+                </div>
+            </div>
+
+            <button class="launch-button" id="launch-game">
+                <span class="launch-text">Begin Journey / 始まり</span>
+                <span class="launch-icon">🌸</span>
+            </button>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <p class="ai-disclaimer">Generated with AI assistance / AIによる生成</p>
+            <div class="footer-links">
+                <a href="https://github.com/JD-Jones-ASES/fraction-flashcards" class="footer-link github-link">
+                    <span class="link-icon">🗃️</span>
+                    <span>Repository</span>
+                </a>
+                <a href="https://www.paypal.com/paypalme/jdjonestexas" class="footer-link support-link">
+                    <span class="link-icon">💴</span>
+                    <span>Support</span>
+                </a>
+            </div>
+            <p class="copyright">© 2025 JD Jones</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
