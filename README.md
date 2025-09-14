@@ -2,8 +2,6 @@
 
 A Japanese springtime-themed fraction practice game that combines elegant aesthetics with interactive mathematics education.
 
-![Fraction Sakura Banner](https://img.shields.io/badge/Fraction%20Sakura-%E5%88%86%E6%95%B0%E6%A1%9C-pink?style=for-the-badge)
-
 ## ✨ Features
 
 ### 🌸 **Immersive Themes**
