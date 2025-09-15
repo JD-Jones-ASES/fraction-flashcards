@@ -470,10 +470,10 @@ function checkAnswer() {
         correctAnswer = problem.correctAnswer;
     } else if (problem.hiddenElement === 'fraction1') {
         // Calculate what fraction1 should be
-        correctAnswer = calculateMissingOperand(problem, 'fraction1');
+        correctAnswer = (problem, 'fraction1');
     } else if (problem.hiddenElement === 'fraction2') {
         // Calculate what fraction2 should be
-        correctAnswer = calculateMissingOperand(problem, 'fraction2');
+        correctAnswer = (problem, 'fraction2');
     }
     
     // Reduce user answer to check equivalence
@@ -516,13 +516,44 @@ function checkAnswer() {
 }
 
 function calculateMissingOperand(problem, missingOperand) {
-    // This is a complex calculation that depends on the operation
-    // For simplicity, we'll use the original fractions that were generated
+    const { fraction1, fraction2, operation, correctAnswer } = problem;
+    
     if (missingOperand === 'fraction1') {
-        return problem.fraction1;
-    } else {
-        return problem.fraction2;
+        // We need to find fraction1 such that: fraction1 [op] fraction2 = result
+        switch (operation) {
+            case 'addition':
+                // fraction1 + fraction2 = result → fraction1 = result - fraction2
+                return subtractFractions(correctAnswer, fraction2);
+            case 'subtraction':
+                // fraction1 - fraction2 = result → fraction1 = result + fraction2
+                return addFractions(correctAnswer, fraction2);
+            case 'multiplication':
+                // fraction1 × fraction2 = result → fraction1 = result ÷ fraction2
+                return divideFractions(correctAnswer, fraction2);
+            case 'division':
+                // fraction1 ÷ fraction2 = result → fraction1 = result × fraction2
+                return multiplyFractions(correctAnswer, fraction2);
+        }
+    } else if (missingOperand === 'fraction2') {
+        // We need to find fraction2 such that: fraction1 [op] fraction2 = result
+        switch (operation) {
+            case 'addition':
+                // fraction1 + fraction2 = result → fraction2 = result - fraction1
+                return subtractFractions(correctAnswer, fraction1);
+            case 'subtraction':
+                // fraction1 - fraction2 = result → fraction2 = fraction1 - result
+                return subtractFractions(fraction1, correctAnswer);
+            case 'multiplication':
+                // fraction1 × fraction2 = result → fraction2 = result ÷ fraction1
+                return divideFractions(correctAnswer, fraction1);
+            case 'division':
+                // fraction1 ÷ fraction2 = result → fraction2 = fraction1 ÷ result
+                return divideFractions(fraction1, correctAnswer);
+        }
     }
+    
+    // Fallback (should never reach here)
+    return { numerator: 1, denominator: 1 };
 }
 
 function showFeedback(message, isCorrect) {
