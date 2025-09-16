@@ -470,18 +470,27 @@ function checkAnswer() {
         correctAnswer = problem.correctAnswer;
     } else if (problem.hiddenElement === 'fraction1') {
         // Calculate what fraction1 should be
-        correctAnswer = (problem, 'fraction1');
+        correctAnswer = calculateMissingOperand(problem, 'fraction1');
     } else if (problem.hiddenElement === 'fraction2') {
         // Calculate what fraction2 should be
-        correctAnswer = (problem, 'fraction2');
+        correctAnswer = calculateMissingOperand(problem, 'fraction2');
     }
+    
+    // DEBUG: Log the values for troubleshooting
+    console.log('Problem:', problem);
+    console.log('User answer:', userNumerator + '/' + userDenominator);
+    console.log('Correct answer:', correctAnswer.numerator + '/' + correctAnswer.denominator);
     
     // Reduce user answer to check equivalence
     const userAnswer = reduceFraction(userNumerator, userDenominator);
+    const reducedCorrect = reduceFraction(correctAnswer.numerator, correctAnswer.denominator);
+    
+    console.log('Reduced user answer:', userAnswer.numerator + '/' + userAnswer.denominator);
+    console.log('Reduced correct answer:', reducedCorrect.numerator + '/' + reducedCorrect.denominator);
     
     // Check if answers are equivalent
-    const isCorrect = (userAnswer.numerator === correctAnswer.numerator && 
-                      userAnswer.denominator === correctAnswer.denominator);
+    const isCorrect = (userAnswer.numerator === reducedCorrect.numerator && 
+                      userAnswer.denominator === reducedCorrect.denominator);
     
     gameState.totalQuestions++;
     
@@ -501,7 +510,7 @@ function checkAnswer() {
         
     } else {
         gameState.streak = 0;
-        const correctFraction = `${correctAnswer.numerator}/${correctAnswer.denominator}`;
+        const correctFraction = `${reducedCorrect.numerator}/${reducedCorrect.denominator}`;
         showFeedback(`Incorrect. The answer is ${correctFraction} / 不正解。答えは ${correctFraction} です。`, false);
         updateStats();
         
@@ -514,6 +523,7 @@ function checkAnswer() {
         numeratorInput.focus();
     }
 }
+
 
 function calculateMissingOperand(problem, missingOperand) {
     const { fraction1, fraction2, operation, correctAnswer } = problem;
