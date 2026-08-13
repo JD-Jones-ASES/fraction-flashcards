@@ -195,7 +195,8 @@
   }
 
   function generateFraction(minDenom, maxDenom, rng) {
-    const d = rng.int(minDenom, maxDenom);
+    const low = Math.max(minDenom, 2);
+    const d = rng.int(low, Math.max(low, maxDenom));
     const n = rng.int(1, d * 2);
     return { n, d };
   }

@@ -59,8 +59,8 @@ test("addition missing-result uses denominators in range", () => {
   assert.equal(question.operation, "addition");
   assert.equal(question.symbol, "+");
   assert.equal(question.hidden, "result");
-  assert.ok(question.a.d >= 1 && question.a.d <= 5);
-  assert.ok(question.b.d >= 1 && question.b.d <= 5);
+  assert.ok(question.a.d >= 2 && question.a.d <= 5);
+  assert.ok(question.b.d >= 2 && question.b.d <= 5);
   assert.deepEqual(
     math.addFractions(question.a, question.b),
     math.reduceFraction(question.result.n, question.result.d)
@@ -152,6 +152,19 @@ test("formatElapsed and accuracyPercent", () => {
   assert.equal(math.formatElapsed(65000), "01:05");
   assert.equal(math.accuracyPercent(0, 0), 100);
   assert.equal(math.accuracyPercent(3, 4), 75);
+});
+
+test("generated denominators stay in range and skip 1", () => {
+  for (let i = 0; i < 40; i += 1) {
+    const question = math.generateQuestion({
+      operations: ["addition"],
+      range: "1-5",
+      mode: "missing-result",
+    });
+    assert.ok(question.a.d >= 2 && question.a.d <= 5);
+    assert.ok(question.b.d >= 2 && question.b.d <= 5);
+    assert.ok(question.a.n >= 1 && question.a.n <= question.a.d * 2);
+  }
 });
 
 test("barModel splits wholes from leftover parts", () => {
