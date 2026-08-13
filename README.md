@@ -15,7 +15,7 @@ python3 -m http.server 8080
 Then visit `http://localhost:8080`.
 
 1. Select one or more operations: addition, subtraction, multiplication, division.
-2. Choose a denominator range (`1–5` through `1–15`). Numerators may be larger than the denominator, so improper fractions appear.
+2. Choose a denominator range (`1–5` through `1–15`). Denominators are at least 2. Numerators may be larger than the denominator, so improper fractions appear.
 3. Choose a question type:
    - **Missing result** — `1/2 + 1/3 = ?`
    - **Missing operand** — `? × 2/5 = 4/5`
