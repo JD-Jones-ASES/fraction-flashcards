@@ -1,159 +1,53 @@
-# 分数桜 (Fraction Sakura)
+# Fraction Sakura
 
-A Japanese springtime-themed fraction practice game that combines elegant aesthetics with interactive mathematics education.
+A small, dependency-free fraction trainer in the browser. Pick operations, a denominator range, and whether the missing value is the result, an operand, or a mix. Then work in a quiet sakura garden until you end the session.
 
-## ✨ Features
+This is a rebuild of an older two-page prototype. The concept is the same; the implementation is a single-page app with shared math logic, visual fraction bars, keyboard-friendly controls, and no third-party services.
 
-### 🌸 **Immersive Themes**
-- **Day Mode**: Bright sakura daylight with soft pinks, warm whites, and gentle floating cherry blossoms
-- **Night Mode**: Moonlit cherry blossoms with deep blues, soft purples, and glowing elements
-- Smooth theme transitions with traditional Japanese design elements
+## Practice
 
-### 🔢 **Comprehensive Fraction Practice**
-- **Four Operations**: Addition, Subtraction, Multiplication, Division
-- **Flexible Difficulty**: Denominator ranges from 1-5 (Beginner) to 1-15 (Expert)
-- **Multiple Question Types**:
-  - Missing Result: Find the answer to fraction equations
-  - Missing Operand: Determine the missing fraction in equations
-  - Mixed Challenge: Random combination of both types
+Open `index.html` in a browser, or serve the folder:
 
-### 📊 **Real-time Statistics**
-- Live timer tracking your session
-- Streak counter for consecutive correct answers
-- Accuracy percentage with dynamic updates
-- Visual feedback with petal burst animations for correct answers
-
-### 🎮 **Interactive Gameplay**
-- Intuitive dual-input system for numerator/denominator entry
-- Automatic fraction reduction and equivalent answer recognition
-- Gentle shake animations and visual feedback for incorrect answers
-- Keyboard shortcuts (Enter to submit, Esc to return to menu)
-
-## 🚀 Quick Start
-
-1. **Clone the repository**:
-   ```bash
-   git clone https://github.com/JD-Jones-ASES/fraction-flashcards.git
-   cd fraction-flashcards
-   ```
-
-2. **Open in your browser**:
-   Simply open `index.html` in any modern web browser. No installation or build process required!
-
-3. **Start practicing**:
-   - Select your preferred operations (addition, subtraction, etc.)
-   - Choose a denominator range that matches your skill level
-   - Pick a question type and begin your journey!
-
-## 🎯 How to Play
-
-### Main Menu Setup
-1. **Select Operations**: Choose one or more fraction operations to practice
-2. **Set Difficulty**: Pick a denominator range:
-   - **1-5**: Perfect for beginners
-   - **1-10**: Intermediate challenge
-   - **1-12**: Advanced practice
-   - **1-15**: Expert-level difficulty
-3. **Choose Question Type**: Decide what you want to practice:
-   - Find missing results
-   - Find missing operands
-   - Mixed challenge for variety
-
-### During Practice
-- Enter your answers using separate fields for numerator and denominator
-- Use Tab to navigate between input fields
-- Press Enter or click Submit to check your answer
-- Watch for visual feedback and track your progress
-- Toggle between day and night themes anytime with the theme button
-
-## 🛠️ Technical Details
-
-### Built With
-- **HTML5**: Semantic structure and accessibility
-- **CSS3**: Advanced animations, gradients, and responsive design
-- **Vanilla JavaScript**: Pure JS with no external dependencies
-
-### Key Features
-- **Responsive Design**: Works beautifully on desktop, tablet, and mobile
-- **Mathematical Accuracy**: Proper fraction reduction and equivalence checking
-- **Accessibility**: Keyboard navigation, screen reader support, and reduced motion options
-- **Performance**: Optimized animations and efficient DOM manipulation
-- **Local Storage**: Theme preferences and game settings persistence
-
-### File Structure
-```
-fraction-sakura/
-│
-├── index.html          # Main launch page with game setup
-├── game.html          # Interactive fraction practice interface  
-├── styles.css         # Complete styling with day/night themes
-├── script.js          # Game logic, fraction operations, and UI interactions
-├── README.md          # This documentation
-└── LICENSE            # MIT License
+```bash
+python3 -m http.server 8080
 ```
 
-## 🌟 Advanced Usage
+Then visit `http://localhost:8080`.
 
-### Keyboard Shortcuts
-- **Enter**: Submit your answer
-- **Tab**: Navigate between input fields
-- **Escape**: Return to main menu (from game page)
-- **Spacebar**: Toggle theme (when not in input fields)
+1. Select one or more operations: addition, subtraction, multiplication, division.
+2. Choose a denominator range (`1–5` through `1–15`). Denominators are at least 2. Numerators may be larger than the denominator, so improper fractions appear.
+3. Choose a question type:
+   - **Missing result** — `1/2 + 1/3 = ?`
+   - **Missing operand** — `? × 2/5 = 4/5`
+   - **Mixed** — either form
+4. Start the session, enter a numerator and denominator, and press Enter.
+5. Equivalent fractions count. `2/4` is accepted for `1/2`.
+6. After an incorrect answer, the simplified value is shown. Press Enter (or Next) to continue.
+7. Escape or **End session** opens a short summary.
 
-### Educational Tips
-- Start with addition and 1-5 denominators for newcomers
-- Practice missing operand questions to deepen fraction understanding
-- Use the accuracy tracker to identify areas needing improvement
-- Switch themes to maintain engagement during longer practice sessions
+Dawn and dusk palettes, plus last-used settings, stay in `localStorage` on that browser. Nothing is sent anywhere.
 
-## 🤝 Contributing
+## Files
 
-Contributions are welcome! Here are some ways you can help:
+```
+index.html      Setup, practice, and summary views
+app.js          UI and session flow
+math.js         Fraction arithmetic, generation, and scoring
+styles.css      Layout and sakura garden theme
+favicon.svg     App icon
+test/           Node tests for math.js
+```
 
-- Report bugs or suggest features via GitHub Issues
-- Submit pull requests for improvements
-- Share feedback about the user experience
-- Help with translations (Japanese improvements welcome!)
+Subtraction stays non-negative. Answers are checked after reducing both the student entry and the true value, so unreduced equivalents are marked correct.
 
-## 📱 Browser Support
+## Tests
 
-Fraction Sakura works on all modern browsers:
-- Chrome 60+
-- Firefox 55+
-- Safari 12+
-- Edge 79+
-- Mobile browsers (iOS Safari, Chrome Mobile)
+Node 18+ is enough. No install step.
 
-## 🔧 Development
+```bash
+npm test
+```
 
-### Local Development
-No build process required! Simply:
-1. Edit the HTML, CSS, or JavaScript files
-2. Refresh your browser to see changes
-3. Use browser developer tools for debugging
+## License
 
-### Code Structure
-- **Modular Design**: Functions are organized by purpose (theme management, game logic, etc.)
-- **Event-Driven**: Uses modern event listeners and delegation
-- **Accessible**: Proper ARIA labels and semantic HTML
-- **Performance**: Debounced inputs and efficient animations
-
-## 📄 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## 💖 Support
-
-If you enjoy Fraction Sakura and find it helpful, consider:
-- ⭐ Starring the repository
-- 🐛 Reporting bugs or suggesting features
-- 💰 Supporting development via [PayPal](https://www.paypal.com/paypalme/jdjonestexas)
-- 📢 Sharing with educators and students
-
----
-
-**Created with ❤️ and mathematical precision**
-
-*Generated with AI assistance / AIによる生成*
-
-© 2025 JD Jones
+MIT License. Copyright (c) 2025-2026 JD Jones. See [LICENSE](LICENSE).

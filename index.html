@@ -1,166 +1,246 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fraction Sakura - Japanese Spring Math Adventure</title>
-    <link rel="stylesheet" href="styles.css">
-</head>
-<body class="day-mode">
-    <div class="floating-petals"></div>
-    
-    <header class="header">
-        <h1 class="title">分数桜<br><span class="subtitle">Fraction Sakura</span></h1>
-        <div class="theme-toggle">
-            <button id="theme-btn" class="theme-button">
-                <span class="sun-icon">☀️</span>
-                <span class="moon-icon">🌙</span>
-            </button>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="color-scheme" content="light dark" />
+    <meta
+      name="description"
+      content="A Japanese garden for practicing addition, subtraction, multiplication, and division of fractions."
+    />
+    <title>Fraction Sakura</title>
+    <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body data-theme="dusk">
+    <div class="atmosphere" aria-hidden="true">
+      <div class="sky"></div>
+      <div class="haze"></div>
+      <svg class="landscape" viewBox="0 0 1200 800" preserveAspectRatio="xMidYMax slice">
+        <defs>
+          <linearGradient id="hill-far" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="var(--hill-far-top)" />
+            <stop offset="100%" stop-color="var(--hill-far-bot)" />
+          </linearGradient>
+          <linearGradient id="hill-near" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="var(--hill-near-top)" />
+            <stop offset="100%" stop-color="var(--hill-near-bot)" />
+          </linearGradient>
+          <radialGradient id="pond-fill" cx="48%" cy="38%" r="72%">
+            <stop offset="0%" stop-color="var(--pond-hi)" />
+            <stop offset="55%" stop-color="var(--pond-mid)" />
+            <stop offset="100%" stop-color="var(--pond-lo)" />
+          </radialGradient>
+          <radialGradient id="moon-glow" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="var(--moon)" />
+            <stop offset="100%" stop-color="transparent" />
+          </radialGradient>
+          <radialGradient id="blossom" cx="50%" cy="45%" r="55%">
+            <stop offset="0%" stop-color="var(--blossom-hi)" />
+            <stop offset="100%" stop-color="var(--blossom-lo)" />
+          </radialGradient>
+        </defs>
+
+        <circle class="celestial-glow" cx="980" cy="118" r="90" fill="url(#moon-glow)" />
+        <circle class="celestial" cx="980" cy="118" r="28" />
+
+        <path fill="url(#hill-far)" d="M0 430 C 140 370, 280 470, 460 400 C 640 330, 820 430, 1200 360 L 1200 800 L 0 800 Z" />
+
+        <g class="far-grove" fill="url(#blossom)" opacity="0.55">
+          <ellipse cx="180" cy="368" rx="54" ry="38" />
+          <ellipse cx="230" cy="352" rx="46" ry="32" />
+          <ellipse cx="860" cy="348" rx="60" ry="40" />
+          <ellipse cx="920" cy="362" rx="48" ry="34" />
+          <ellipse cx="1080" cy="340" rx="52" ry="36" />
+        </g>
+
+        <g class="torii" fill="var(--torii)">
+          <rect x="556" y="318" width="10" height="96" rx="1" />
+          <rect x="634" y="318" width="10" height="96" rx="1" />
+          <rect x="538" y="308" width="124" height="10" rx="2" />
+          <rect x="548" y="328" width="104" height="7" rx="1" />
+        </g>
+
+        <ellipse class="pond" cx="600" cy="620" rx="360" ry="96" fill="url(#pond-fill)" />
+        <ellipse class="ripple r1" cx="600" cy="620" rx="220" ry="50" />
+        <ellipse class="ripple r2" cx="600" cy="620" rx="150" ry="32" />
+        <ellipse class="ripple r3" cx="600" cy="620" rx="78" ry="16" />
+
+        <path fill="url(#hill-near)" d="M0 540 C 180 480, 320 600, 520 520 C 700 450, 880 590, 1200 510 L 1200 800 L 0 800 Z" />
+
+        <g class="tree tree-left">
+          <path class="trunk" d="M168 800 C 176 640, 150 560, 196 430 C 210 560, 188 680, 214 800 Z" />
+          <g fill="url(#blossom)">
+            <ellipse cx="132" cy="404" rx="48" ry="34" />
+            <ellipse cx="176" cy="348" rx="58" ry="40" />
+            <ellipse cx="228" cy="332" rx="64" ry="46" />
+            <ellipse cx="274" cy="378" rx="50" ry="36" />
+            <ellipse cx="214" cy="412" rx="62" ry="38" />
+            <ellipse cx="168" cy="388" rx="40" ry="28" />
+            <circle cx="148" cy="360" r="10" opacity="0.85" />
+            <circle cx="248" cy="352" r="9" opacity="0.8" />
+            <circle cx="198" cy="318" r="8" opacity="0.9" />
+          </g>
+        </g>
+
+        <g class="tree tree-right">
+          <path class="trunk" d="M1048 800 C 1036 650, 1070 560, 1020 430 C 1004 560, 1058 690, 1010 800 Z" />
+          <g fill="url(#blossom)">
+            <ellipse cx="968" cy="392" rx="50" ry="34" />
+            <ellipse cx="1024" cy="336" rx="66" ry="46" />
+            <ellipse cx="1092" cy="354" rx="54" ry="38" />
+            <ellipse cx="1124" cy="408" rx="46" ry="32" />
+            <ellipse cx="1036" cy="418" rx="60" ry="36" />
+            <ellipse cx="1070" cy="388" rx="38" ry="26" />
+            <circle cx="1004" cy="348" r="9" opacity="0.85" />
+            <circle cx="1108" cy="372" r="8" opacity="0.8" />
+            <circle cx="1048" cy="312" r="8" opacity="0.9" />
+          </g>
+        </g>
+
+        <g class="lantern">
+          <rect x="886" y="508" width="22" height="8" rx="1" class="lantern-base" />
+          <rect x="891" y="458" width="12" height="50" rx="1" class="lantern-post" />
+          <path d="M882 458 H 912 L 907 446 H 887 Z" class="lantern-roof" />
+          <rect x="887" y="460" width="20" height="22" rx="3" class="lantern-body" />
+          <circle cx="897" cy="471" r="5" class="lantern-glow" />
+        </g>
+      </svg>
+      <div class="petals">
+        <span></span><span></span><span></span><span></span><span></span>
+        <span></span><span></span><span></span><span></span><span></span>
+      </div>
+    </div>
+
+    <a class="skip-link" href="#app">Skip to content</a>
+
+    <div id="app" class="app">
+      <header class="masthead">
+        <div class="masthead-row">
+          <p class="eyebrow">分数桜 · Fraction practice</p>
+          <button id="theme-btn" class="theme-btn" type="button" aria-pressed="true">
+            <span class="theme-mark" aria-hidden="true"></span>
+            <span id="theme-label">Dusk</span>
+          </button>
         </div>
-    </header>
+        <h1>Fraction Sakura</h1>
+        <p class="lede">
+          A still garden for working with fractions. Choose a path, then solve one equation at a time.
+        </p>
+      </header>
 
-    <main class="main-content">
-        <div class="game-setup">
-            <section class="option-panel">
-                <h2>Fraction Operations / 演算</h2>
-                <div class="operation-grid">
-                    <label class="operation-card">
-                        <input type="checkbox" name="operations" value="addition" checked>
-                        <div class="card-content">
-                            <span class="operation-symbol">+</span>
-                            <span class="operation-name">Addition</span>
-                        </div>
-                    </label>
-                    <label class="operation-card">
-                        <input type="checkbox" name="operations" value="subtraction">
-                        <div class="card-content">
-                            <span class="operation-symbol">−</span>
-                            <span class="operation-name">Subtraction</span>
-                        </div>
-                    </label>
-                    <label class="operation-card">
-                        <input type="checkbox" name="operations" value="multiplication">
-                        <div class="card-content">
-                            <span class="operation-symbol">×</span>
-                            <span class="operation-name">Multiplication</span>
-                        </div>
-                    </label>
-                    <label class="operation-card">
-                        <input type="checkbox" name="operations" value="division">
-                        <div class="card-content">
-                            <span class="operation-symbol">÷</span>
-                            <span class="operation-name">Division</span>
-                        </div>
-                    </label>
-                </div>
-            </section>
+      <main>
+        <section id="view-setup" class="panel view is-active" aria-labelledby="setup-title">
+          <h2 id="setup-title" class="panel-title">Choose a path</h2>
 
-            <section class="option-panel">
-                <h2>Denominator Range / 分母の範囲</h2>
-                <div class="range-options">
-                    <label class="range-card">
-                        <input type="radio" name="denominator-range" value="1-5" checked>
-                        <div class="card-content">
-                            <span class="range-value">1-5</span>
-                            <span class="range-desc">Beginner</span>
-                        </div>
-                    </label>
-                    <label class="range-card">
-                        <input type="radio" name="denominator-range" value="1-10">
-                        <div class="card-content">
-                            <span class="range-value">1-10</span>
-                            <span class="range-desc">Intermediate</span>
-                        </div>
-                    </label>
-                    <label class="range-card">
-                        <input type="radio" name="denominator-range" value="1-12">
-                        <div class="card-content">
-                            <span class="range-value">1-12</span>
-                            <span class="range-desc">Advanced</span>
-                        </div>
-                    </label>
-                    <label class="range-card">
-                        <input type="radio" name="denominator-range" value="1-15">
-                        <div class="card-content">
-                            <span class="range-value">1-15</span>
-                            <span class="range-desc">Expert</span>
-                        </div>
-                    </label>
-                </div>
-            </section>
+          <fieldset class="fieldset">
+            <legend>Operations</legend>
+            <p class="hint">Choose one or more. At least one must stay selected.</p>
+            <div id="op-group" class="choice-grid"></div>
+          </fieldset>
 
-            <section class="option-panel">
-                <h2>Question Type / 問題の種類</h2>
-                <div class="question-options">
-                    <label class="question-card">
-                        <input type="radio" name="question-type" value="missing-result" checked>
-                        <div class="card-content">
-                            <span class="question-symbol">?</span>
-                            <span class="question-name">Missing Result</span>
-                            <span class="question-desc">Find the answer</span>
-                        </div>
-                    </label>
-                    <label class="question-card">
-                        <input type="radio" name="question-type" value="missing-operand">
-                        <div class="card-content">
-                            <span class="question-symbol">□</span>
-                            <span class="question-name">Missing Operand</span>
-                            <span class="question-desc">Find the fraction</span>
-                        </div>
-                    </label>
-                    <label class="question-card">
-                        <input type="radio" name="question-type" value="both">
-                        <div class="card-content">
-                            <span class="question-symbol">⚡</span>
-                            <span class="question-name">Mixed Challenge</span>
-                            <span class="question-desc">Random mix</span>
-                        </div>
-                    </label>
-                </div>
-            </section>
+          <fieldset class="fieldset">
+            <legend>Denominator range</legend>
+            <p class="hint">Numerators may be larger, so improper fractions appear.</p>
+            <div id="range-group" class="choice-grid choice-grid-compact"></div>
+          </fieldset>
 
-            <div class="preview-panel">
-                <h3>Game Preview / ゲームプレビュー</h3>
-                <div class="preview-content">
-                    <div class="preview-operations">
-                        <span class="preview-label">Operations:</span>
-                        <span id="preview-ops">Addition</span>
-                    </div>
-                    <div class="preview-range">
-                        <span class="preview-label">Denominators:</span>
-                        <span id="preview-range">1-5 (Beginner)</span>
-                    </div>
-                    <div class="preview-type">
-                        <span class="preview-label">Question Type:</span>
-                        <span id="preview-type">Missing Result</span>
-                    </div>
-                </div>
+          <fieldset class="fieldset">
+            <legend>Question type</legend>
+            <div id="mode-group" class="choice-grid"></div>
+          </fieldset>
+
+          <button id="start-btn" class="btn primary" type="button">Begin practice</button>
+        </section>
+
+        <section id="view-play" class="panel view" hidden aria-labelledby="play-title">
+          <div class="play-top">
+            <h2 id="play-title" class="visually-hidden">Practice</h2>
+            <ul class="stats" aria-label="Session stats">
+              <li><span>Time</span> <strong id="stat-time">00:00</strong></li>
+              <li><span>Answered</span> <strong id="stat-answered">0</strong></li>
+              <li><span>Streak</span> <strong id="stat-streak">0</strong></li>
+              <li><span>Accuracy</span> <strong id="stat-accuracy">100%</strong></li>
+            </ul>
+            <button id="end-btn" class="btn ghost" type="button">End session</button>
+          </div>
+
+          <p id="prompt" class="prompt">Find the missing fraction</p>
+          <div id="equation" class="equation" aria-live="polite"></div>
+
+          <form id="answer-form" class="answer-row">
+            <div class="fraction-input" role="group" aria-label="Fraction answer">
+              <label class="visually-hidden" for="num-input">Numerator</label>
+              <input
+                id="num-input"
+                name="numerator"
+                type="text"
+                inputmode="numeric"
+                autocomplete="off"
+                enterkeyhint="next"
+                spellcheck="false"
+                placeholder="n"
+              />
+              <span class="input-bar" aria-hidden="true"></span>
+              <label class="visually-hidden" for="den-input">Denominator</label>
+              <input
+                id="den-input"
+                name="denominator"
+                type="text"
+                inputmode="numeric"
+                autocomplete="off"
+                enterkeyhint="done"
+                spellcheck="false"
+                placeholder="d"
+              />
             </div>
+            <button id="submit-btn" class="btn primary" type="submit">Check</button>
+          </form>
 
-            <button class="launch-button" id="launch-game">
-                <span class="launch-text">Begin Journey / 始まり</span>
-                <span class="launch-icon">🌸</span>
-            </button>
-        </div>
-    </main>
+          <div id="play-actions" class="play-actions">
+            <button id="skip-btn" class="btn ghost" type="button">Skip</button>
+          </div>
 
-    <footer class="footer">
-        <div class="footer-content">
-            <p class="ai-disclaimer">Generated with AI assistance / AIによる生成</p>
-            <div class="footer-links">
-                <a href="https://github.com/JD-Jones-ASES/fraction-flashcards/releases/tag/fraction-flashcards" class="footer-link github-link" target="_blank">
-                    <span class="link-icon">🗃️</span>
-                    <span>Repository</span>
-                </a>
-                <a href="https://www.paypal.com/paypalme/jdjonestexas" class="footer-link support-link" target="_blank">
-                    <span class="link-icon">💴</span>
-                    <span>Support</span>
-                </a>
-            </div>
-            <p class="copyright">© 2025 JD Jones</p>
-        </div>
-    </footer>
+          <button id="continue-btn" class="btn primary" type="button" hidden>Next</button>
+          <p id="feedback" class="feedback" hidden></p>
+          <p class="kbd-hint">Enter checks or continues. Escape ends the session. Equivalent fractions count.</p>
+        </section>
 
-    <script src="script.js"></script>
-</body>
+        <section id="view-summary" class="panel view" hidden aria-labelledby="summary-title">
+          <h2 id="summary-title" class="panel-title">Session complete</h2>
+          <ul class="summary-grid">
+            <li>
+              <span>Time</span>
+              <strong id="summary-time">00:00</strong>
+            </li>
+            <li>
+              <span>Score</span>
+              <strong id="summary-score">0 / 0</strong>
+            </li>
+            <li>
+              <span>Accuracy</span>
+              <strong id="summary-accuracy">100%</strong>
+            </li>
+            <li>
+              <span>Best streak</span>
+              <strong id="summary-streak">0</strong>
+            </li>
+          </ul>
+          <div class="actions">
+            <button id="again-btn" class="btn primary" type="button">Practice again</button>
+            <button id="settings-btn" class="btn ghost" type="button">Change path</button>
+          </div>
+        </section>
+      </main>
+
+      <footer class="site-footer">
+        <p>Open-source math practice. MIT License.</p>
+      </footer>
+    </div>
+
+    <div id="live" class="visually-hidden" aria-live="polite"></div>
+
+    <script src="math.js"></script>
+    <script src="app.js"></script>
+  </body>
 </html>
